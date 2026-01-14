@@ -4,13 +4,12 @@ public class MainMenu {
         Scanner scan = new Scanner(System.in);
         System.out.println("What is your name?");
         String name = scan.nextLine();
-        scan.nextLine();
         while (true) {
             System.out.println("-----Welcome to Fake NYT Games, " + name + "!-----\n Please select one of the following options (Type the corresponding number):\n1. Wordle\n2. Connections\n3. Cipher Wordle\n4. Help\n5. Quit\n------------------------------------");
             int temp = scan.nextInt();
             if (temp == 1) {
                 Wordle wordle = new Wordle(name);
-
+                wordle.play();
             } else if (temp == 2) {
                 Connections connections =  new Connections(name);
 

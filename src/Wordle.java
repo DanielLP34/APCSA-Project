@@ -3,22 +3,32 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Wordle {
-    private String name;
+    private final String name;
+    private String currentWord;
+    private boolean isGameOver;
     public Wordle(String n) {
         this.name = n;
+        this.currentWord = null;
+        this.isGameOver = false;
     }
-    public void Play() {
+    public void play() {
+        Scanner scan = new Scanner(System.in);
         ArrayList<String> fileData = getFileData("src/WordleData");
         String word = fileData.get((int)(Math.random() * 1671));
-        System.out.println("Welcome to Wordle, " + name + ".\nPlease pick one of these options:\n1. Play Game\n2. Help\n3.Main Menu\n--------------------");
+        System.out.println("Welcome to Wordle, " + name);
+        while (!isGameOver) {
+            System.out.println("Please guess a 5 letter word (When you enter a word,\na string will appear and show the letter if it is correct and in the right place,\na + if the letter is in the word but in the wrong place,\n or a * if the letter isn't in the word)");
+            String guess = scan.nextLine();
+            this.currentWord = word;
 
+        }
     }
     public String getHint(String guess) {
         String fString = "";
         for (int i = 0; i < guess.length(); i++) {
-            if (guess.substring(i, i + 1).equals(word.substring(i, i + 1))) {
+            if (guess.substring(i, i + 1).equals(currentWord.substring(i, i + 1))) {
                 fString += guess.substring(i, i + 1);
-            } else if (word.contains(guess.substring(i, i + 1))) {
+            } else if (currentWord.contains(guess.substring(i, i + 1))) {
                 fString += "+";
             } else {
                 fString += "*";
