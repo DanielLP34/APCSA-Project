@@ -23,7 +23,7 @@ public class CipherWordle {
         this.currentWord = word;
         this.modWord = modify(word);
         while (!isGameOver) {
-            System.out.println("Please guess a 5 letters in CAPS (You will see a series of up and down arrows and an x if the character is in the right spot. Your given word is " + word);
+            System.out.println("Please guess 5 letters in CAPS (You will see a series of up and down arrows and an x if the character is in the right spot. Your given word is " + word);
             String guess = scan.nextLine();
             System.out.println(getHint(guess));
             if (getHint(guess).equals(modWord)) {
@@ -53,17 +53,17 @@ public class CipherWordle {
             }
             fString += (char) currChar;
         }
-        return fString;
+        return fString + GameRunner.RESET;
     }
     public String getHint(String guess) {
         String fString = "";
         for (int i = 0; i < guess.length(); i++) {
             if (guess.substring(i, i + 1).equals(modWord.substring(i, i + 1))) {
-                fString += guess.substring(i, i + 1);
+                fString += GameRunner.GREEN + guess.substring(i, i + 1);
             } else if ((int)(modWord.charAt(i)) > (int)(guess.charAt(i))) {
-                fString += "^";
+                fString += GameRunner.YELLOW + "^";
             } else {
-                fString += "v";
+                fString += GameRunner.YELLOW + "v";
             }
 
         }

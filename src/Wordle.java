@@ -20,7 +20,7 @@ public class Wordle {
         while (!isGameOver) {
             System.out.println("Please guess a 5 letter word in ALL CAPS (When you enter a word,\na string will appear and show the letter if it is correct and in the right place,\na + if the letter is in the word but in the wrong place,\n or a * if the letter isn't in the word)");
             String guess = scan.nextLine();
-            this.currentWord = word;
+            this.currentWord = GameRunner.GREEN + word;
             System.out.println(getHint(guess));
             if (getHint(guess).equals(currentWord)) {
                 System.out.println("You won! Going back to main menu.");
@@ -39,15 +39,15 @@ public class Wordle {
         String fString = "";
         for (int i = 0; i < guess.length(); i++) {
             if (guess.substring(i, i + 1).equals(currentWord.substring(i, i + 1))) {
-                fString += guess.substring(i, i + 1);
+                fString += GameRunner.GREEN + guess.charAt(i);
             } else if (currentWord.contains(guess.substring(i, i + 1))) {
-                fString += "+";
+                fString += GameRunner.YELLOW + "+";
             } else {
-                fString += "*";
+                fString += GameRunner.RED + "*";
             }
 
         }
-        return fString;
+        return fString + GameRunner.RESET;
     }
     public static ArrayList<String> getFileData(String fileName) {
         ArrayList<String> fileData = new ArrayList<String>();
