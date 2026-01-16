@@ -6,6 +6,7 @@ public class Wordle {
     private final String name;
     private String currentWord;
     private boolean isGameOver;
+    private int numGuesses;
     public Wordle(String n) {
         this.name = n;
         this.currentWord = null;
@@ -20,7 +21,18 @@ public class Wordle {
             System.out.println("Please guess a 5 letter word (When you enter a word,\na string will appear and show the letter if it is correct and in the right place,\na + if the letter is in the word but in the wrong place,\n or a * if the letter isn't in the word)");
             String guess = scan.nextLine();
             this.currentWord = word;
-
+            System.out.println(getHint(guess));
+            if (getHint(guess).equals(currentWord)) {
+                System.out.println("You won! Going back to main menu.");
+                isGameOver = true;
+            } else {
+                System.out.println("Guess again!");
+                numGuesses++;
+            }
+            if (numGuesses == 6 && !isGameOver) {
+                System.out.println("You lose! The word was " + currentWord + ". Going to main menu.");
+                break;
+            }
         }
     }
     public String getHint(String guess) {
