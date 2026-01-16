@@ -18,7 +18,7 @@ public class Wordle {
         String word = fileData.get((int)(Math.random() * 1671));
         System.out.println("Welcome to Wordle, " + name);
         while (!isGameOver) {
-            System.out.println("Please guess a 5 letter word (When you enter a word,\na string will appear and show the letter if it is correct and in the right place,\na + if the letter is in the word but in the wrong place,\n or a * if the letter isn't in the word)");
+            System.out.println("Please guess a 5 letter word in ALL CAPS (When you enter a word,\na string will appear and show the letter if it is correct and in the right place,\na + if the letter is in the word but in the wrong place,\n or a * if the letter isn't in the word)");
             String guess = scan.nextLine();
             this.currentWord = word;
             System.out.println(getHint(guess));
